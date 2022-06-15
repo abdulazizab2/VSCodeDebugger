@@ -1,5 +1,8 @@
 """
-    This tutorial will be a walkthrough to a real debugging scenario and how to use the watch feature
+    This tutorial will be a walkthrough to a real debugging scenario and how to use the watch feature:
+    1- Real code example and bug scenariors
+    2- The 'Watch' feature
+    3- Using the debugger to understand about a paper's methodology
 """
 
 import numpy as np
@@ -36,6 +39,8 @@ import argparse
 
 
 parser = argparse.ArgumentParser(description="MNAD")
+parser.add_argument('--train_folder', type=str, required=True, help='path of the train dataset containing frames')
+parser.add_argument('--test_folder', type=str, required=True, help='path of the test dataset containing frames')
 parser.add_argument('--batch_size', type=int, default=4, help='batch size for training')
 parser.add_argument('--test_batch_size', type=int, default=1, help='batch size for test')
 parser.add_argument('--epochs', type=int, default=60, help='number of epochs for training')
@@ -54,17 +59,13 @@ parser.add_argument('--num_workers', type=int, default=2, help='number of worker
 parser.add_argument('--num_workers_test', type=int, default=1, help='number of workers for the test loader')
 
 def main():
-
-
-    train_folder = r'C:\Users\azaz-\Development\VSCodeDebugger\MNAD\dataset\training\frames'
-    test_folder = r'C:\Users\azaz-\Development\VSCodeDebugger\MNAD\dataset\testing\frames'
-
     # Loading dataset
-    train_dataset = DataLoader(train_folder, transforms.Compose([
+    
+    train_dataset = DataLoader(args.train_folder, transforms.Compose([
                 transforms.ToTensor(),          
                 ]), resize_height=args.h, resize_width=args.w, time_step=args.t_length-1)
 
-    test_dataset = DataLoader(test_folder, transforms.Compose([
+    test_dataset = DataLoader(args.test_folder, transforms.Compose([
                 transforms.ToTensor(),            
                 ]), resize_height=args.h, resize_width=args.w, time_step=args.t_length-1)
 

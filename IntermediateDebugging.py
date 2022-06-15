@@ -1,12 +1,8 @@
 """
     This tutorial will go over intermediate-level debugging by using a debugger configuration file
-"""
-
-"""
-    This tutorial will cover a simple model deubgging:
     1- Adding a debugging configuration
     2- Going inside the configurations
-    3- Go over behind the screen in PyTorch
+    3- Go over behind the scenes in PyTorch
 """
 
 # step1: Execute the code. Should receive a runtime error to move to next step
